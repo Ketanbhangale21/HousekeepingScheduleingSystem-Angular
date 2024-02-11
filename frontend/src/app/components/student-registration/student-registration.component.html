@@ -1,0 +1,157 @@
+<div class="container1">
+  <h2>Student Registration</h2>
+  <form (submit)="handleRegistration()">
+    <div class="input-name">
+      <input
+        type="text"
+        [(ngModel)]="firstName"
+        name="firstName"
+        placeholder="First Name"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="lastName"
+        name="lastName"
+        placeholder="Last Name"
+        required
+      />
+    </div>
+
+    <div class="input-name">
+      <input
+        style="width: 370px"
+        type="text"
+        [(ngModel)]="email"
+        name="email"
+        placeholder="Email"
+        required
+      />
+    </div>
+
+    <div class="input-name">
+      <input
+        type="text"
+        [(ngModel)]="country"
+        name="country"
+        placeholder="Country"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="state"
+        name="state"
+        placeholder="State"
+        required
+      />
+    </div>
+
+    <div class="input-name">
+      <input
+        type="text"
+        [(ngModel)]="city"
+        name="city"
+        placeholder="City"
+        required
+      />
+      <input
+        type="text"
+        [(ngModel)]="phoneNumber"
+        name="phoneNumber"
+        placeholder="Phone Number"
+        required
+      />
+    </div>
+
+    <div class="input-name">
+      <input
+        type="{{ showPassword ? 'text' : 'password' }}"
+        [(ngModel)]="password"
+        name="password"
+        placeholder="Password"
+        required
+      />
+      <p class="password" (click)="togglePasswordVisibility()">
+        <ng-container *ngIf="showPassword; else showEye">
+          <i class="bi bi-eye-slash"></i>
+        </ng-container>
+        <ng-template #showEye>
+          <i class="bi bi-eye"></i>
+        </ng-template>
+      </p>
+      <input
+        type="{{ showRePassword ? 'text' : 'password' }}"
+        [(ngModel)]="repassword"
+        name="repassword"
+        placeholder="ReType Password"
+        required
+      />
+      <p class="repassword" (click)="toggleRePasswordVisibility()">
+        <ng-container *ngIf="showRePassword; else showEye">
+          <i class="bi bi-eye-slash"></i>
+        </ng-container>
+        <ng-template #showEye>
+          <i class="bi bi-eye"></i>
+        </ng-template>
+      </p>
+    </div>
+
+    <div class="input-name" style="overflow: hidden">
+      <select
+        style="width: 370px; padding: 2px"
+        [(ngModel)]="secquestion"
+        name="secquestion"
+        required
+      >
+        <option value="" disabled>Select a security question</option>
+        <option *ngFor="let question of securityQuestions" [value]="question">
+          {{ question }}
+        </option>
+      </select>
+    </div>
+
+    <div class="input-name">
+      <input
+        style="width: 370px"
+        type="text"
+        [(ngModel)]="answer"
+        name="answer"
+        placeholder="Answer"
+        required
+      />
+    </div>
+
+    <div class="input-name" style="width: 200px">
+      <label class="radio">
+        <input
+          type="radio"
+          [(ngModel)]="gender"
+          name="gender"
+          value="female"
+          required
+        />
+        Female
+        <span></span>
+      </label>
+      <label class="radio">
+        <input
+          type="radio"
+          [(ngModel)]="gender"
+          name="gender"
+          value="male"
+          required
+        />
+        Male
+        <span></span>
+      </label>
+    </div>
+
+    <div class="input-name">
+      <button type="submit" class="btn">Register</button>
+    </div>
+    <div class="input-name">
+      <p class="mt-2">Already a Member? <a routerLink="/">Login</a></p>
+    </div>
+    <div *ngIf="errors" class="errorMessage">{{ errors }}</div>
+  </form>
+</div>

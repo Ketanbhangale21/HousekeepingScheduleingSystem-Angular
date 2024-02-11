@@ -1,0 +1,59 @@
+<div class="outer-container">
+  <div class="container">
+    <div class="form-container log-in-container">
+      <form class="input-form" (submit)="handleLogin()">
+        <h1 class="heading">Login</h1>
+        <div class="formgroup">
+          <input
+            class="input"
+            type="email"
+            placeholder="Enter your email-id"
+            [(ngModel)]="email"
+            (change)="handleEmailChange($event)"
+          />
+        </div>
+        <div class="formgroup">
+          <input
+            class="input"
+            type="{{ showPassword ? 'text' : 'password' }}"
+            placeholder="Enter your password"
+            [(ngModel)]="password"
+            (change)="handlePasswordChange($event)"
+          />
+          <p class="showPassword1" (click)="togglePasswordVisibility()">
+            <i class="bi bi-eye" *ngIf="showPassword"></i>
+            <i class="bi bi-eye-slash" *ngIf="!showPassword"></i>
+          </p>
+        </div>
+        <button type="submit" class="submit">Login</button>
+        <a
+          routerLink="/forgotpassword"
+          class="mb-3 mt-3 link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+          >Forgot Password</a
+        >
+        <p class="d-inline">
+          Not a Member?
+          <a
+            routerLink="/studentregistration"
+            class="mb-3 mt-3 link-success link-offset-2 link-underline-opacity-25 link-underline-opacity-100-hover"
+            >SignUp</a
+          >
+        </p>
+        <div class="error-message text-danger" *ngIf="errorField">
+          {{ errorField }}
+        </div>
+      </form>
+    </div>
+    <div class="overlay-container">
+      <div class="overlay">
+        <div class="overlay-panel overlay-right">
+          <h1 class="heading2">HomeCare Pro</h1>
+          <p class="section">
+            This is the place where you can schedule your comfortable time for
+            cleaning purpose for HouseKeeper.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
