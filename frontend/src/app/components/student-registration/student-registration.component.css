@@ -75,9 +75,6 @@ h2 {
 .t-name:focus {
   border: 1.5px solid #19725d;
 }
-.radio-btn {
-  /* margin-right: 4px; */
-}
 .btn {
   border-radius: 20px;
   color: #fef1c7;
@@ -132,9 +129,7 @@ h2 {
   color: black;
   font-size: 15px !important;
 }
-.radio + .radio {
-  /* margin-left: 20px; */
-}
+
 .radio input[type="radio"] {
   display: none;
 }

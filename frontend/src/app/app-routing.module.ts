@@ -3,6 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/login/login.component';
 import { StudentRegistrationComponent } from './components/student-registration/student-registration.component';
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { AuthGuard } from './components/Services/auth.gaurd';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -13,6 +15,11 @@ const routes: Routes = [
   {
     path: 'forgotpassword',
     component: ForgotPasswordComponent,
+  },
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthGuard],
   },
   {
     path: '**',

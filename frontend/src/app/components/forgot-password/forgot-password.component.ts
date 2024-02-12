@@ -1,22 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { StudentsService } from '../Services/students.service';
 
 @Component({
   selector: 'app-forgot-password',
   templateUrl: './forgot-password.component.html',
   styleUrls: ['./forgot-password.component.css'],
 })
-export class ForgotPasswordComponent implements OnInit {
-  username: string = '';
+export class ForgotPasswordComponent {
+  constructor(
+    private router: Router,
+    private studentService: StudentsService,
+    private http: HttpClient
+  ) {}
+  ngOnInit() {
+    this.studentService.getStudents().subscribe(
+      (data) => (this.userData = data),
+      (error) => console.error(error)
+    );
+  }
+  email: string = '';
   password: string = '';
+  updatedPassword: any = {};
+  errorField: any;
   secquestion: string = '';
   answer: string = '';
   userData: any[] = [];
-  fieldsEmpty: string = '';
   showPassword: boolean = false;
-  error: string = '';
-
   securityQuestions: string[] = [
     "What is your mother's maiden name?",
     'What is the name of your first pet?',
@@ -24,42 +35,32 @@ export class ForgotPasswordComponent implements OnInit {
     'What city were you born in?',
     'What is the name of your elementary school?',
   ];
-
-  constructor(private router: Router, private http: HttpClient) {}
-
-  ngOnInit(): void {
-    this.fetchData();
+  async intializeNewPassword(): Promise<void> {
+    this.updatedPassword = {
+      email: this.email,
+      password: this.password,
+    };
   }
-
-  fetchData(): void {
-    this.http.get<any[]>('http://localhost:3005/api/students').subscribe(
-      (response) => {
-        this.userData = response;
-      },
-      (error) => {
-        console.error('Error fetching data:', error);
-      }
-    );
-  }
-
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
 
   onSubmit(): void {
-    if (!this.username || !this.secquestion || !this.answer) {
-      this.fieldsEmpty = 'Please fill out all fields.';
+    if (!this.email || !this.secquestion || !this.answer) {
+      this.errorField = 'Please fill out all fields.';
       return;
     }
-    this.idCheck(this.username);
+    this.idCheck(this.email);
   }
-
-  idCheck(username: string): void {
+  clearError() {
+    this.errorField = '';
+  }
+  async idCheck(email: string): Promise<void> {
     const user = this.userData.find(
-      (user) => user.email === username.toLowerCase()
+      (user) => user.email === email.toLowerCase()
     );
     if (!user) {
-      this.fieldsEmpty = 'Unregistered Email Id';
+      this.errorField = 'Unregistered Email Id';
       return;
     }
     if (this.secquestion !== '') {
@@ -67,35 +68,37 @@ export class ForgotPasswordComponent implements OnInit {
         if (user.secanswer === this.answer) {
           const isValidPassword = this.isPasswordValid(this.password);
           if (!isValidPassword.valid) {
-            // this.fieldsEmpty = isValidPassword.error;
+            this.errorField = isValidPassword.error;
             return;
           } else {
-            this.fieldsEmpty = '';
+            this.errorField = '';
             const dataObj = {
-              email: this.username,
+              email: this.email,
               password: this.password,
             };
-            this.http
-              .put('http://localhost:3005/api/students/reset', dataObj)
-              .subscribe(
-                (resData) => {
-                  alert('Password Updated successful');
-                  this.router.navigate(['/']);
-                },
-                (error) => {
-                  console.error('Error updating password:', error);
-                  alert('Error updating password. Please try again later.');
-                }
-              );
+            await this.intializeNewPassword();
+            console.log(this.updatedPassword);
+            this.studentService.updatePassword(this.updatedPassword).subscribe(
+              (response) => {
+                // Handle successful response here
+                console.log('PUT request successful:', response);
+              },
+              (error) => {
+                // Handle error response here
+                console.error('PUT request error:', error);
+              }
+            );
+            alert('Password Updated Successfully');
+            this.router.navigate(['/login']);
           }
         } else {
-          this.fieldsEmpty = 'Incorrect Answer';
+          this.errorField = 'Incorrect Answer';
         }
       } else {
-        this.fieldsEmpty = 'Please Select Correct Question !!';
+        this.errorField = 'Please Select Correct Question !!';
       }
     } else {
-      this.fieldsEmpty = 'Please Select a Question ';
+      this.errorField = 'Please Select a Question ';
     }
   }
 

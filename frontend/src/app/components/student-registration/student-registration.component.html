@@ -8,6 +8,7 @@
         name="firstName"
         placeholder="First Name"
         required
+        (ngModelChange)="clearError()"
       />
       <input
         type="text"
@@ -15,6 +16,7 @@
         name="lastName"
         placeholder="Last Name"
         required
+        (ngModelChange)="clearError()"
       />
     </div>
 
@@ -26,6 +28,7 @@
         name="email"
         placeholder="Email"
         required
+        (ngModelChange)="clearError()"
       />
     </div>
 
@@ -36,6 +39,7 @@
         name="country"
         placeholder="Country"
         required
+        (ngModelChange)="clearError()"
       />
       <input
         type="text"
@@ -43,6 +47,7 @@
         name="state"
         placeholder="State"
         required
+        (ngModelChange)="clearError()"
       />
     </div>
 
@@ -53,6 +58,7 @@
         name="city"
         placeholder="City"
         required
+        (ngModelChange)="clearError()"
       />
       <input
         type="text"
@@ -60,6 +66,7 @@
         name="phoneNumber"
         placeholder="Phone Number"
         required
+        (ngModelChange)="clearError()"
       />
     </div>
 
@@ -70,6 +77,7 @@
         name="password"
         placeholder="Password"
         required
+        (ngModelChange)="clearError()"
       />
       <p class="password" (click)="togglePasswordVisibility()">
         <ng-container *ngIf="showPassword; else showEye">
@@ -85,6 +93,7 @@
         name="repassword"
         placeholder="ReType Password"
         required
+        (ngModelChange)="clearError()"
       />
       <p class="repassword" (click)="toggleRePasswordVisibility()">
         <ng-container *ngIf="showRePassword; else showEye">
@@ -102,6 +111,7 @@
         [(ngModel)]="secquestion"
         name="secquestion"
         required
+        (ngModelChange)="clearError()"
       >
         <option value="" disabled>Select a security question</option>
         <option *ngFor="let question of securityQuestions" [value]="question">
@@ -118,6 +128,7 @@
         name="answer"
         placeholder="Answer"
         required
+        (ngModelChange)="clearError()"
       />
     </div>
 
@@ -129,6 +140,7 @@
           name="gender"
           value="female"
           required
+          (ngModelChange)="clearError()"
         />
         Female
         <span></span>
@@ -140,6 +152,7 @@
           name="gender"
           value="male"
           required
+          (ngModelChange)="clearError()"
         />
         Male
         <span></span>
@@ -152,6 +165,8 @@
     <div class="input-name">
       <p class="mt-2">Already a Member? <a routerLink="/">Login</a></p>
     </div>
-    <div *ngIf="errors" class="errorMessage">{{ errors }}</div>
+    <div *ngIf="errorsFields !== true" class="errorMessage">
+      {{ errorsFields }}
+    </div>
   </form>
 </div>

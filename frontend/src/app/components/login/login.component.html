@@ -10,6 +10,7 @@
             placeholder="Enter your email-id"
             [(ngModel)]="email"
             (change)="handleEmailChange($event)"
+            name="email"
           />
         </div>
         <div class="formgroup">
@@ -19,6 +20,7 @@
             placeholder="Enter your password"
             [(ngModel)]="password"
             (change)="handlePasswordChange($event)"
+            name="password"
           />
           <p class="showPassword1" (click)="togglePasswordVisibility()">
             <i class="bi bi-eye" *ngIf="showPassword"></i>

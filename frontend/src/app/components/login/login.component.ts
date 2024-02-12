@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import axios from 'axios';
+import { StudentsService } from '../Services/students.service';
+import { AuthService } from '../Services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -9,13 +9,21 @@ import axios from 'axios';
 })
 export class LoginComponent {
   email: string = '';
+  fname: string = '';
   password: string = '';
   errorField: string = '';
   userData: any[] = [];
   showPassword: boolean = false;
-
-  constructor(private router: Router, private route: ActivatedRoute) {}
-
+  constructor(
+    private studentService: StudentsService,
+    private authService: AuthService
+  ) {}
+  ngOnInit() {
+    this.studentService.getStudents().subscribe(
+      (data) => (this.userData = data),
+      (error) => console.error(error)
+    );
+  }
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
@@ -30,10 +38,19 @@ export class LoginComponent {
       this.errorField = 'Invalid email-id';
       return;
     }
-
-    // Implement login logic here
+    const user = this.userData.find(
+      (user) => user.email === this.email.toLowerCase()
+    );
+    if (!user) {
+      this.errorField = 'Unregistered Email Id';
+      return;
+    }
+    if (user.password === this.password) {
+      this.authService.login(this.email, user.fname);
+    } else {
+      this.errorField = 'Incorrect Password, please try again.';
+    }
   }
-
   validateEmail(email: string): boolean {
     const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
     return emailPattern.test(email);
@@ -47,14 +64,5 @@ export class LoginComponent {
   handlePasswordChange(event: any): void {
     this.password = event.target.value;
     this.errorField = '';
-  }
-
-  async fetchData(): Promise<void> {
-    try {
-      const response = await axios.get('http://localhost:3005/api/students');
-      this.userData = response.data;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
   }
 }

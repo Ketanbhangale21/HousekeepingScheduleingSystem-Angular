@@ -121,7 +121,9 @@ router.put(
 router.put("/students/reset", async function (req, res) {
   try {
     let studentemail = req.body.email;
+    console.log(req.body);
     let student = await StudentModel.findOne({ email: studentemail });
+    console.log(student);
     if (!student) {
       return res
         .status(404)
