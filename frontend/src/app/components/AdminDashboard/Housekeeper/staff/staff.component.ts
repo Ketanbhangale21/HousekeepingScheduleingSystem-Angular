@@ -17,7 +17,7 @@ export class StaffComponent implements OnInit {
   indexOfFirstRecord: number = this.indexOfLastRecord - this.recordsPerPage;
   currentRecords: any[] = [];
   
-  totalPages: number = 0;
+  //totalPages: number = 1;
   totalPagesArray: number[] = [];
 
   constructor(private http: HttpClient) {}
@@ -25,13 +25,17 @@ export class StaffComponent implements OnInit {
   ngOnInit() {
     this.fetchHousekeepers();
     this.totalPagesArray = Array(this.totalPages).fill(0).map((_, index) => index + 1);
+    console.log(this.housekeepers);
   }
 
   trackByFn(index: number, item: any): any {
     return item._id; // or any other unique identifier in your housekeeper object
   }
+  get totalPages() {
+    return Math.ceil(this.housekeepers.length / this.recordsPerPage);
+  }
 
-  fetchHousekeepers() {
+  async fetchHousekeepers():Promise<void>{
     this.http.get<any[]>("http://localhost:3005/api/staff").subscribe(
       (response) => {
         const sortedHousekeepers = response.sort((a, b) => a.hid - b.hid);
@@ -56,6 +60,7 @@ export class StaffComponent implements OnInit {
   handlePageChange(pageNumber: number) {
     this.currentPage = pageNumber;
     this.updateCurrentRecords();
+    console.log(pageNumber);
   }
 
   handleUpdate() {
