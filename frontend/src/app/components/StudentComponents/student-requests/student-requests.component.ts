@@ -10,6 +10,7 @@ import { RequestService } from '../../Services/requests.service';
 })
 export class StudentRequestsComponent {
   errors: string = '';
+  stdid: any;
   studentEmail: any;
   timeSlots: any;
   requestDetails: any = {
@@ -33,10 +34,11 @@ export class StudentRequestsComponent {
 
   ngOnInit(): void {
     this.studentEmail = sessionStorage.getItem('UserEmail');
+    this.stdid = sessionStorage.getItem('UserId');
     this.generateTimeCells();
+    console.log(this.stdid);
   }
 
-  stdid: any = sessionStorage.getItem('UserId');
   async generateUniqueID(): Promise<string> {
     return 'RQ' + Math.floor(100000 + Math.random() * 900000);
   }
@@ -49,15 +51,14 @@ export class StudentRequestsComponent {
       day: 'numeric',
       year: 'numeric',
     };
-    const dateObject = { year: 2024, month: 2, day: 2 };
+    const dateObject = this.requestDetails.date;
     const { year, month, day } = dateObject;
     const formattedDate = new Date(year, month - 1, day).toLocaleDateString(
       'en-US',
       options
     );
     this.requestDetails.date = formattedDate;
-
-    console.log(formattedDate);
+    // console.log(formattedDate);
   }
   generateTimeCells(): void {
     const startTime = 9;

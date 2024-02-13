@@ -8,7 +8,10 @@ router.use(express.json());
 
 router.get("/students", async function (req, res) {
   try {
-    let result = await StudentModel.find({}, { _id: 0 })
+    let result = await StudentModel.find(
+      { email: { $ne: "admin@example.com" } },
+      { _id: 0 }
+    )
       .sort({ stdid: 1 })
       .lean();
     res.send(result);
@@ -41,18 +44,15 @@ router.get(
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
+    console.log(email, password);
     const user = await StudentModel.findOne({ email });
 
     if (!user) {
-      return res.status(401).json({ error: "User not found" });
+      return res.status(401).json({ error: "Unregistered Email-Id" });
     }
-    const passwordMatch = await user.comparePassword(password);
-
-    // If passwords match, verification is successful
-    if (passwordMatch) {
+    if (user.password === password) {
       return res.status(200).json({ message: "Login successful" });
     } else {
-      // If passwords don't match, handle the case appropriately
       return res.status(401).json({ error: "Incorrect password" });
     }
   } catch (error) {

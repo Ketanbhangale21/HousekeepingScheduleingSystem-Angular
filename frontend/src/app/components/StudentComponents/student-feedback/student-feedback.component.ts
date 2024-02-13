@@ -21,6 +21,11 @@ export class StudentFeedbackComponent {
   ngOnInit(): void {
     this.fetchRequestIds();
   }
+  ngOnChange() {
+    if (this.selectedReqId) {
+      this.fetchHousekeeperDetails();
+    }
+  }
 
   async fetchRequestIds(): Promise<void> {
     try {
@@ -42,9 +47,9 @@ export class StudentFeedbackComponent {
       console.error('Error fetching request IDs:', error);
     }
   }
-
   async fetchHousekeeperDetails(): Promise<void> {
     try {
+      console.log(this.selectedReqId);
       if (this.selectedReqId) {
         const response: any = await this.http
           .get('http://localhost:3005/api/staff')
@@ -58,6 +63,7 @@ export class StudentFeedbackComponent {
           fildata.forEach((dataItem: any) => {
             this.housekeeperName = `${dataItem.fname} ${dataItem.lname}`;
             this.housekeeperID = dataItem.hid;
+            console.log(this.housekeeperID);
           });
         }
       } else {

@@ -55,6 +55,7 @@ export class StudentRegistrationComponent {
       floorno: await this.generateFloorNo(),
       reqid: [],
     };
+    console.log(this.newStudent);
   }
   async generateStdId(): Promise<string> {
     return 'ST' + Math.floor(100000 + Math.random() * 900000);

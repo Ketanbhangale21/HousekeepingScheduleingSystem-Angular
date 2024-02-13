@@ -11,7 +11,6 @@ export class StudentProfileComponent {
   selectedStudent: any = null;
   details: boolean = false;
   editable: boolean = false;
-
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {

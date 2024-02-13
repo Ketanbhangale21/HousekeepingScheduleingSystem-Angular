@@ -8,13 +8,11 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   constructor(private router: Router) {}
-  login(email: string, userName: string, stdid: string): void {
+  login(email: string): void {
     if (email === 'admin@example.com') {
       sessionStorage.setItem('UserType', 'Admin');
     } else {
       sessionStorage.setItem('UserEmail', email);
-      sessionStorage.setItem('UserId', stdid);
-      sessionStorage.setItem('UserName', userName);
       sessionStorage.setItem('UserType', 'Student');
     }
 

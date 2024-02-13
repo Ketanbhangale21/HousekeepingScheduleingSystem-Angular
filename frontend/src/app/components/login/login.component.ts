@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { StudentsService } from '../Services/students.service';
 import { AuthService } from '../Services/auth.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -16,18 +17,14 @@ export class LoginComponent {
   showPassword: boolean = false;
   constructor(
     private studentService: StudentsService,
-    private authService: AuthService
+    private authService: AuthService,
+    private http: HttpClient
   ) {}
-  ngOnInit() {
-    this.studentService.getStudents().subscribe(
-      (data) => (this.userData = data),
-      (error) => console.error(error)
-    );
-  }
+  ngOnInit() {}
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-  handleLogin(): void {
+  async handleLogin(): Promise<void> {
     if (!this.email || !this.password) {
       this.errorField = 'Email or password cannot be empty';
       return;
@@ -36,18 +33,23 @@ export class LoginComponent {
       this.errorField = 'Invalid email-id';
       return;
     }
-    const user = this.userData.find(
-      (user) => user.email === this.email.toLowerCase()
+    const loginData = { email: this.email, password: this.password };
+    console.log(loginData);
+    this.http.post<any>('http://localhost:3005/api/login', loginData).subscribe(
+      (response) => {
+        if (response && response.message === 'Login successful') {
+          console.log('Login successful');
+          this.errorField = response.message;
+          this.authService.login(this.email);
+        } else {
+          this.errorField = response.error;
+          // console.error('Login failed:', response.error);
+        }
+      },
+      (error) => {
+        // console.error('Error during login:', error);
+      }
     );
-    if (!user) {
-      this.errorField = 'Unregistered Email Id';
-      return;
-    }
-    if (user.password === this.password) {
-      this.authService.login(this.email, user.fname, user.stdid);
-    } else {
-      this.errorField = 'Incorrect Password, please try again.';
-    }
   }
   validateEmail(email: string): boolean {
     const emailPattern = /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/;
