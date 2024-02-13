@@ -43,11 +43,11 @@ export class LoginComponent {
           this.authService.login(this.email);
         } else {
           this.errorField = response.error;
-          // console.error('Login failed:', response.error);
+          console.error('Login failed:', response.error);
         }
       },
       (error) => {
-        // console.error('Error during login:', error);
+        console.error('Error during login:', error);
       }
     );
   }

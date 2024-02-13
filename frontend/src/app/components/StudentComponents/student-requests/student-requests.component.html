@@ -62,9 +62,11 @@
       </div>
     </div>
     <br />
-    <button type="button" class="btn create" (click)="handleFeedback()">
-      Create
-    </button>
+    <div class="d-flex justify-content-center">
+      <button type="button" class="btn create" (click)="handleFeedback()">
+        Create
+      </button>
+    </div>
     <div class="errorMessage" *ngIf="errors">{{ errors }}</div>
   </form>
 </div>
