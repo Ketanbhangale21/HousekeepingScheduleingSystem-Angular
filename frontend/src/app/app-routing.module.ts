@@ -5,6 +5,15 @@ import { StudentRegistrationComponent } from './components/student-registration/
 import { ForgotPasswordComponent } from './components/forgot-password/forgot-password.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { AuthGuard } from './components/Services/auth.gaurd';
+import { StudentRequestsComponent } from './components/StudentComponents/student-requests/student-requests.component';
+import { RequestStatusComponent } from './components/StudentComponents/request-status/request-status.component';
+import { StudentProfileComponent } from './components/StudentComponents/student-profile/student-profile.component';
+import { StudentFeedbackComponent } from './components/StudentComponents/student-feedback/student-feedback.component';
+import { RequestsComponent } from './components/AdminComponents/requests/requests.component';
+import { HousekeepersComponent } from './components/AdminComponents/housekeepers/housekeepers.component';
+import { HouskeeperRegistrationComponent } from './components/AdminComponents/houskeeper-registration/houskeeper-registration.component';
+import { StudentsComponent } from './components/AdminComponents/students/students.component';
+import { FeedbacksComponent } from './components/AdminComponents/feedbacks/feedbacks.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -21,6 +30,43 @@ const routes: Routes = [
     component: DashboardComponent,
     canActivate: [AuthGuard],
   },
+  {
+    path: 'studentrequest',
+    component: StudentRequestsComponent,
+  },
+  {
+    path: 'studentstatus',
+    component: RequestStatusComponent,
+  },
+  {
+    path: 'profile',
+    component: StudentProfileComponent,
+  },
+  {
+    path: 'studentfeedback',
+    component: StudentFeedbackComponent,
+  },
+  {
+    path: 'adminrequest',
+    component: RequestsComponent,
+  },
+  {
+    path: 'housekeepers',
+    component: HousekeepersComponent,
+  },
+  {
+    path: 'housekeepersregistration',
+    component: HouskeeperRegistrationComponent,
+  },
+  {
+    path: 'students',
+    component: StudentsComponent,
+  },
+  {
+    path: 'adminfeedback',
+    component: FeedbacksComponent,
+  },
+
   {
     path: '**',
     component: LoginComponent,

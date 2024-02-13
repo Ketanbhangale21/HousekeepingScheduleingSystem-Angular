@@ -7,6 +7,7 @@
         [(ngModel)]="selectedReqId"
         name="requestId"
         class="form-control"
+        (change)="handleOptionchange()"
       >
         <option value="">Select Request ID</option>
         <option *ngFor="let id of requestIds" [value]="id" style="color: black">

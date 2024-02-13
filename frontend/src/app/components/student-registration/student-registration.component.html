@@ -1,172 +1,190 @@
-<div class="container1">
-  <h2>Student Registration</h2>
-  <form (submit)="handleRegistration()">
-    <div class="input-name">
-      <input
-        type="text"
-        [(ngModel)]="firstName"
-        name="firstName"
-        placeholder="First Name"
-        required
-        (ngModelChange)="clearError()"
-      />
-      <input
-        type="text"
-        [(ngModel)]="lastName"
-        name="lastName"
-        placeholder="Last Name"
-        required
-        (ngModelChange)="clearError()"
-      />
-    </div>
-
-    <div class="input-name">
-      <input
-        style="width: 370px"
-        type="text"
-        [(ngModel)]="email"
-        name="email"
-        placeholder="Email"
-        required
-        (ngModelChange)="clearError()"
-      />
-    </div>
-
-    <div class="input-name">
-      <input
-        type="text"
-        [(ngModel)]="country"
-        name="country"
-        placeholder="Country"
-        required
-        (ngModelChange)="clearError()"
-      />
-      <input
-        type="text"
-        [(ngModel)]="state"
-        name="state"
-        placeholder="State"
-        required
-        (ngModelChange)="clearError()"
-      />
-    </div>
-
-    <div class="input-name">
-      <input
-        type="text"
-        [(ngModel)]="city"
-        name="city"
-        placeholder="City"
-        required
-        (ngModelChange)="clearError()"
-      />
-      <input
-        type="text"
-        [(ngModel)]="phoneNumber"
-        name="phoneNumber"
-        placeholder="Phone Number"
-        required
-        (ngModelChange)="clearError()"
-      />
-    </div>
-
-    <div class="input-name">
-      <input
-        type="{{ showPassword ? 'text' : 'password' }}"
-        [(ngModel)]="password"
-        name="password"
-        placeholder="Password"
-        required
-        (ngModelChange)="clearError()"
-      />
-      <p class="password" (click)="togglePasswordVisibility()">
-        <ng-container *ngIf="showPassword; else showEye">
-          <i class="bi bi-eye-slash"></i>
-        </ng-container>
-        <ng-template #showEye>
-          <i class="bi bi-eye"></i>
-        </ng-template>
-      </p>
-      <input
-        type="{{ showRePassword ? 'text' : 'password' }}"
-        [(ngModel)]="repassword"
-        name="repassword"
-        placeholder="ReType Password"
-        required
-        (ngModelChange)="clearError()"
-      />
-      <p class="repassword" (click)="toggleRePasswordVisibility()">
-        <ng-container *ngIf="showRePassword; else showEye">
-          <i class="bi bi-eye-slash"></i>
-        </ng-container>
-        <ng-template #showEye>
-          <i class="bi bi-eye"></i>
-        </ng-template>
-      </p>
-    </div>
-
-    <div class="input-name" style="overflow: hidden">
-      <select
-        style="width: 370px; padding: 2px"
-        [(ngModel)]="secquestion"
-        name="secquestion"
-        required
-        (ngModelChange)="clearError()"
-      >
-        <option value="" disabled>Select a security question</option>
-        <option *ngFor="let question of securityQuestions" [value]="question">
-          {{ question }}
-        </option>
-      </select>
-    </div>
-
-    <div class="input-name">
-      <input
-        style="width: 370px"
-        type="text"
-        [(ngModel)]="answer"
-        name="answer"
-        placeholder="Answer"
-        required
-        (ngModelChange)="clearError()"
-      />
-    </div>
-
-    <div class="input-name" style="width: 200px">
-      <label class="radio">
+<div class="outer-container">
+  <div class="container1">
+    <h3 class="m-0 p-0 text-center" style="color: #19725d">
+      Student Registration
+    </h3>
+    <form (submit)="handleRegistration()">
+      <div class="input-name">
         <input
-          type="radio"
-          [(ngModel)]="gender"
-          name="gender"
-          value="female"
+          class="input"
+          type="text"
+          [(ngModel)]="firstName"
+          name="firstName"
+          placeholder="First Name"
           required
           (ngModelChange)="clearError()"
         />
-        Female
-        <span></span>
-      </label>
-      <label class="radio">
         <input
-          type="radio"
-          [(ngModel)]="gender"
-          name="gender"
-          value="male"
+          class="input"
+          type="text"
+          [(ngModel)]="lastName"
+          name="lastName"
+          placeholder="Last Name"
           required
           (ngModelChange)="clearError()"
         />
-        Male
-        <span></span>
-      </label>
-    </div>
+      </div>
 
-    <div class="input-name">
-      <button type="submit" class="btn">Register</button>
-    </div>
-    <div class="input-name">
-      <p class="mt-2">Already a Member? <a routerLink="/">Login</a></p>
-    </div>
-    <div *ngIf="errorsFields !== true" class="errorMessage">
-      {{ errorsFields }}
-    </div>
-  </form>
+      <div class="input-name">
+        <input
+          class="input"
+          style="width: 370px"
+          type="text"
+          [(ngModel)]="email"
+          name="email"
+          placeholder="Email"
+          required
+          (ngModelChange)="clearError()"
+        />
+      </div>
+
+      <div class="input-name">
+        <input
+          class="input"
+          type="text"
+          [(ngModel)]="country"
+          name="country"
+          placeholder="Country"
+          required
+          (ngModelChange)="clearError()"
+        />
+        <input
+          class="input"
+          type="text"
+          [(ngModel)]="state"
+          name="state"
+          placeholder="State"
+          required
+          (ngModelChange)="clearError()"
+        />
+      </div>
+
+      <div class="input-name">
+        <input
+          class="input"
+          type="text"
+          [(ngModel)]="city"
+          name="city"
+          placeholder="City"
+          required
+          (ngModelChange)="clearError()"
+        />
+        <input
+          class="input"
+          type="text"
+          [(ngModel)]="phoneNumber"
+          name="phoneNumber"
+          placeholder="Phone Number"
+          required
+          (ngModelChange)="clearError()"
+        />
+      </div>
+
+      <div class="input-name">
+        <input
+          class="input"
+          type="{{ showPassword ? 'text' : 'password' }}"
+          [(ngModel)]="password"
+          name="password"
+          placeholder="Password"
+          required
+          (ngModelChange)="clearError()"
+        />
+        <p class="password" (click)="togglePasswordVisibility()">
+          <ng-container *ngIf="showPassword; else showEye">
+            <i class="bi bi-eye-slash"></i>
+          </ng-container>
+          <ng-template #showEye>
+            <i class="bi bi-eye"></i>
+          </ng-template>
+        </p>
+        <input
+          class="input"
+          type="{{ showRePassword ? 'text' : 'password' }}"
+          [(ngModel)]="repassword"
+          name="repassword"
+          placeholder="ReType Password"
+          required
+          (ngModelChange)="clearError()"
+        />
+        <p class="repassword" (click)="toggleRePasswordVisibility()">
+          <ng-container *ngIf="showRePassword; else showEye">
+            <i class="bi bi-eye-slash"></i>
+          </ng-container>
+          <ng-template #showEye>
+            <i class="bi bi-eye"></i>
+          </ng-template>
+        </p>
+      </div>
+
+      <div class="input-name" style="overflow: hidden">
+        <select
+          class="input"
+          [(ngModel)]="secquestion"
+          name="secquestion"
+          required
+          (ngModelChange)="clearError()"
+        >
+          <option value="" disabled>Select a security question</option>
+          <option *ngFor="let question of securityQuestions" [value]="question">
+            {{ question }}
+          </option>
+        </select>
+      </div>
+
+      <div class="input-name">
+        <input
+          class="input"
+          style="width: 370px"
+          type="text"
+          [(ngModel)]="answer"
+          name="answer"
+          placeholder="Answer"
+          required
+          (ngModelChange)="clearError()"
+        />
+      </div>
+
+      <div class="input-name" style="width: 200px">
+        <label class="radio">
+          <input
+            class="input"
+            type="radio"
+            [(ngModel)]="gender"
+            name="gender"
+            value="female"
+            required
+            (ngModelChange)="clearError()"
+          />
+          Female
+          <span></span>
+        </label>
+        <label class="radio">
+          <input
+            class="input"
+            type="radio"
+            [(ngModel)]="gender"
+            name="gender"
+            value="male"
+            required
+            (ngModelChange)="clearError()"
+          />
+          Male
+          <span></span>
+        </label>
+      </div>
+
+      <div class="input-name">
+        <button type="submit" class="btn">Register</button>
+      </div>
+      <div class="input-name">
+        <p class="mt-2">
+          Already a Member? <a class="loginlink" routerLink="/">Login</a>
+        </p>
+      </div>
+      <div *ngIf="errorsFields !== true" class="errorMessage">
+        {{ errorsFields }}
+      </div>
+    </form>
+  </div>
 </div>

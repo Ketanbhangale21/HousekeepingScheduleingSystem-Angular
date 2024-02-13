@@ -1,11 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const { body, validationResult, param } = require("express-validator");
-const jwt = require("jsonwebtoken");
 const StudentModel = require("../models/studentModel");
-
 router.use(express.json());
-
 router.get("/students", async function (req, res) {
   try {
     let result = await StudentModel.find(

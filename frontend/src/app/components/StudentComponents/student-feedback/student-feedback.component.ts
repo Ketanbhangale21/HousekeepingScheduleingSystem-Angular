@@ -20,8 +20,11 @@ export class StudentFeedbackComponent {
 
   ngOnInit(): void {
     this.fetchRequestIds();
+    if (this.selectedReqId) {
+      this.fetchHousekeeperDetails();
+    }
   }
-  ngOnChange() {
+  handleOptionchange() {
     if (this.selectedReqId) {
       this.fetchHousekeeperDetails();
     }
@@ -41,7 +44,7 @@ export class StudentFeedbackComponent {
           .map((user: any) => user.reqid)
           .flat();
         this.requestIds = userRequestIds;
-        console.log(this.requestIds);
+        // console.log(this.requestIds);
       }
     } catch (error) {
       console.error('Error fetching request IDs:', error);

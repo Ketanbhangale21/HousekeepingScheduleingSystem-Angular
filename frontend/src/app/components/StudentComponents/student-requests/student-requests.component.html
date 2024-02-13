@@ -34,7 +34,6 @@
     <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
     <div class="card">
       <h4 class="design">Request:</h4>
-      <hr />
       <div class="request">
         <label class="title">
           <input
@@ -48,7 +47,10 @@
           <span>&nbsp;&nbsp;</span>
           Select All
         </label>
-        <label *ngFor="let option of requestOptions; trackBy: trackByFn">
+        <label
+          *ngFor="let option of requestOptions; trackBy: trackByFn"
+          class="title"
+        >
           <input
             type="checkbox"
             name="requestType"
@@ -63,7 +65,11 @@
     </div>
     <br />
     <div class="d-flex justify-content-center">
-      <button type="button" class="btn create" (click)="handleFeedback()">
+      <button
+        type="button"
+        class="btn btn-success mt-4 create"
+        (click)="handleFeedback()"
+      >
         Create
       </button>
     </div>

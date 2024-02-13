@@ -1,18 +1,31 @@
 .container1 {
   max-width: 850px !important;
   margin-top: 100px;
-  padding: 6px;
+  padding: 10px 40px;
   box-shadow: 0 0 10px 1px #19725d;
-  background-color: #f5f5f4;
-  /* border-top: 6px solid #19725d; */
-  width: 400px;
+  width: 450px;
   display: flex;
   margin-top: 10px;
   flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;
+  background-color: #f5f5f4;
+  border-radius: 4px;
   transform: translate(-50%, -50%);
+}
+.outer-container {
+  /* background: transparent; */
+  /* background-color: #965000; */
+  background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
+  /* margin: 0 auto; */
+  width: 100% !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  /* width: 768px; */
+  height: 100vh;
 }
 .form-container1 {
   position: absolute;
@@ -100,7 +113,6 @@ h2 {
 }
 
 .btn:enabled:hover {
-  color: #ffc107;
   transform: scale(1);
   background-color: #00897b;
   box-shadow: none;
@@ -167,12 +179,16 @@ h2 {
 .password {
   position: absolute;
   left: 40%;
-  top: 3px;
+  top: 13px;
+  font-size: 20px;
+  color: #00796b;
 }
 .repassword {
+  color: #00796b;
+  font-size: 20px;
   position: absolute;
   right: 20px;
-  top: 3px;
+  top: 13px;
 }
 
 .loginlink {
@@ -191,4 +207,21 @@ h2 {
 .loginlink:hover {
   transform: scale(1);
   box-shadow: none;
+}
+.input {
+  font-size: 15px;
+  background-color: #eee;
+  border: 1px solid #00796b;
+  border-radius: 5px;
+  padding: 12px 15px;
+  margin: 3px 3px;
+  width: 100%;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.input:focus {
+  /* border-color: #009688; */
+  border: 1px solid #965000 !important;
+}
+input::placeholder {
+  color: #009688;
 }

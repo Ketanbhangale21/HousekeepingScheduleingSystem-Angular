@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
 }
+
 .heading {
   font-weight: bold;
   margin: 0;
@@ -49,6 +50,7 @@
 .outer-container {
   /* background: transparent; */
   /* background-color: #965000; */
+  background-image: linear-gradient(-225deg, #b7f8db 0%, #50a7c2 100%);
   margin: 0 auto;
   width: 100% !important;
   display: flex;
@@ -173,4 +175,7 @@
 
 .heading2 {
   font-weight: bold;
+}
+input::placeholder {
+  color: #009688;
 }
