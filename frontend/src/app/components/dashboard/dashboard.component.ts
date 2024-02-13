@@ -7,20 +7,24 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./dashboard.component.css'],
 })
 export class DashboardComponent implements OnInit {
-  prop1 = sessionStorage.getItem('UserType');
-  name = sessionStorage.getItem('UserName');
+  // prop1 = sessionStorage.getItem('UserType');
+  // name = sessionStorage.getItem('UserName');
+  prop1: any;
+  name: any;
   userEmail: string = '';
   route: string = 'dashboard';
 
   constructor() {}
 
   ngOnInit(): void {
-    // this.prop1 = sessionStorage.getItem('UserType') || '';
-    // this.userEmail = sessionStorage.getItem('UserEmail') || '';
-    // this.name = sessionStorage.getItem('UserName') || '';
+    this.prop1 = sessionStorage.getItem('UserType') || '';
+    this.userEmail = sessionStorage.getItem('UserEmail') || '';
+    this.name = sessionStorage.getItem('UserName') || '';
   }
 
   handleRoutes(route: string): void {
+    if (route === 'housekeepers') {
+    }
     this.route = route;
   }
 

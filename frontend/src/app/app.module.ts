@@ -20,10 +20,33 @@ import { RequestsComponent } from './components/AdminComponents/requests/request
 import { HousekeepersComponent } from './components/AdminComponents/housekeepers/housekeepers.component';
 import { StudentsComponent } from './components/AdminComponents/students/students.component';
 import { FeedbacksComponent } from './components/AdminComponents/feedbacks/feedbacks.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HouskeeperRegistrationComponent } from './components/AdminComponents/houskeeper-registration/houskeeper-registration.component';
 
 @NgModule({
-  declarations: [AppComponent, LoginComponent, StudentRegistrationComponent, ForgotPasswordComponent, DashboardComponent, StudentRequestsComponent, RequestStatusComponent, StudentProfileComponent, StudentFeedbackComponent, RequestsComponent, HousekeepersComponent, StudentsComponent, FeedbacksComponent],
-  imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    LoginComponent,
+    StudentRegistrationComponent,
+    ForgotPasswordComponent,
+    DashboardComponent,
+    StudentRequestsComponent,
+    RequestStatusComponent,
+    StudentProfileComponent,
+    StudentFeedbackComponent,
+    RequestsComponent,
+    HousekeepersComponent,
+    StudentsComponent,
+    FeedbacksComponent,
+    HouskeeperRegistrationComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    NgbModule,
+  ],
   providers: [provideClientHydration()],
   bootstrap: [AppComponent],
 })

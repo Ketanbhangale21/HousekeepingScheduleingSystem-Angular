@@ -38,6 +38,28 @@ router.get(
     }
   }
 );
+router.post("/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await StudentModel.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ error: "User not found" });
+    }
+    const passwordMatch = await user.comparePassword(password);
+
+    // If passwords match, verification is successful
+    if (passwordMatch) {
+      return res.status(200).json({ message: "Login successful" });
+    } else {
+      // If passwords don't match, handle the case appropriately
+      return res.status(401).json({ error: "Incorrect password" });
+    }
+  } catch (error) {
+    console.error("Error during login:", error);
+    return res.status(500).json({ error: "Internal server error" });
+  }
+});
 router.post(
   "/students",
   [

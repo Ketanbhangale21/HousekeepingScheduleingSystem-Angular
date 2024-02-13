@@ -1,0 +1,106 @@
+.status1 {
+  background: transparent;
+  color: blue;
+  font-weight: bold;
+  border: 1px solid blue;
+  border-radius: 15px;
+  padding: 5px;
+  transition: 0.3s ease-in-out;
+}
+.status2 {
+  transition: 0.3s ease-in-out;
+  padding: 5px;
+  border-radius: 15px;
+  font-weight: bold;
+  background: transparent;
+  color: teal;
+  border: 1px solid teal;
+}
+.status1:hover,
+.status2:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+.housekeepers-table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+}
+.housekeepers-table table {
+  width: 1200px;
+  table-layout: fixed;
+}
+
+.housekeepers-table td {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: center;
+  width: 200px;
+  max-width: 200px; /* Set a fixed width for each td element */
+  white-space: nowrap; /* Prevent text from wrapping */
+  overflow: hidden; /* Hide overflow text */
+  text-overflow: ellipsis; /* Display ellipsis (...) for overflow text */
+  position: sticky;
+  top: 0;
+}
+
+.housekeepers-table th {
+  padding: 12px 16px;
+  border: 1px solid #ddd;
+  text-align: center;
+  background-color: #229c80;
+  font-weight: bold;
+  text-align: center;
+}
+
+.housekeepers-table tbody tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.housekeepers-table tbody tr:hover {
+  background-color: #d4eeda;
+}
+
+.housekeepers-table i {
+  cursor: pointer;
+  color: #19725d;
+  margin-right: 8px;
+}
+
+.housekeepers-table i:hover {
+  color: #0056b3;
+}
+
+/* Add more styles as needed */
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+}
+
+.pagination ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination li {
+  display: inline-block;
+  margin-right: 5px;
+  cursor: pointer;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+.pagination li:hover {
+  cursor: pointer;
+  background-color: #f0f0f0;
+}
+
+.pagination ul li.active {
+  background-color: #19725d;
+  color: #fff;
+}

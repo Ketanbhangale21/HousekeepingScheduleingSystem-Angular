@@ -1,1 +1,251 @@
-<p>student-profile works!</p>
+<div class="maincontainer">
+  <div class="outercontainer">
+    <ng-container *ngIf="studentDetails">
+      <div class="innercontainer">
+        <div class="profile-card">
+          <div class="profile-header">
+            <img
+              [src]="
+                studentDetails.gender === 'Female'
+                  ? '/assets/Images/profile1.png'
+                  : '/assets/Images/profile2.png'
+              "
+              alt="Housekeeper Avatar"
+              class="avatar"
+            />
+          </div>
+          <div class="profile-details">
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >SiD:</span
+              >
+              <span class="value">{{ studentDetails.stdid }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >First Name:</span
+              >
+              <span class="value">{{ studentDetails.fname }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >Last Name:</span
+              >
+              <span class="value">{{ studentDetails.lname }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >Email:</span
+              >
+              <span class="value">{{ studentDetails.email }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >Country:</span
+              >
+              <span class="value">{{ studentDetails.country }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >State:</span
+              >
+              <span class="value">{{ studentDetails.state }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >City:</span
+              >
+              <span class="value">{{ studentDetails.city }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >Phone:</span
+              >
+              <span class="value">{{ studentDetails.phone }}</span>
+            </div>
+            <div class="detail">
+              <span class="label" style="text-align: start; padding-top: 3px"
+                >Gender:</span
+              >
+              <span class="value">{{ studentDetails.gender }}</span>
+            </div>
+            <i
+              class="bi bi-pencil-square"
+              style="cursor: pointer"
+              (click)="editSelected()"
+              >Edit</i
+            >
+          </div>
+          <div class="editHousekeeper" *ngIf="editable">
+            <table class="table">
+              <tbody>
+                <tr style="margin-bottom: 23px">
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >SiD:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="stdid"
+                      [value]="studentDetails.stdid"
+                      disabled
+                    />
+                  </td>
+                </tr>
+                <tr style="margin-bottom: 23px">
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >First Name:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="fname"
+                      [value]="studentDetails.fname"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >Last Name:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="lname"
+                      [value]="studentDetails.lname"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >Email:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="email"
+                      [value]="studentDetails.email"
+                      disabled
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >Country:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="country"
+                      [value]="studentDetails.country"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >State:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="state"
+                      [value]="studentDetails.state"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >City:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="city"
+                      [value]="studentDetails.city"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >Phone:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="phone"
+                      [value]="studentDetails.phone"
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span
+                      class="label"
+                      style="text-align: start; padding-top: 3px"
+                      >Gender:</span
+                    >
+                  </td>
+                  <td>
+                    <input
+                      type="text"
+                      id="gender"
+                      [value]="studentDetails.gender"
+                    />
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="d-flex m-3" style="justify-content: space-around">
+          <button
+            (click)="handleBack()"
+            *ngIf="editable"
+            class="btn btn-danger"
+          >
+            Cancel
+          </button>
+          <button
+            (click)="handleUpdate()"
+            *ngIf="editable"
+            class="btn btn-primary"
+          >
+            Update
+          </button>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

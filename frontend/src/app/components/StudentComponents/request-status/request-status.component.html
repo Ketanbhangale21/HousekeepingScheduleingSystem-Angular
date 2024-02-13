@@ -1,1 +1,46 @@
-<p>request-status works!</p>
+<div>
+  <table class="housekeepers-table">
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>Date</th>
+        <th>Timings</th>
+        <th>Requests</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let request of currentRecords">
+        <td>{{ request.reqid }}</td>
+        <td>{{ request.date }}</td>
+        <td>{{ request.timings }}</td>
+        <td>
+          <ul class="p-0">
+            <li *ngFor="let req of request.reqs" class="requests">{{ req }}</li>
+          </ul>
+        </td>
+        <td [ngClass]="getStatusClass(request.status)">{{ request.status }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="pagination">
+    <ul *ngIf="requests.length > recordsPerPage">
+      <li (click)="handlePageChange(currentPage - 1)" *ngIf="currentPage > 1">
+        &laquo; Prev
+      </li>
+      <li
+        *ngFor="let page of getPageNumbers()"
+        (click)="handlePageChange(page)"
+        [class.active]="currentPage === page"
+      >
+        {{ page }}
+      </li>
+      <li
+        (click)="handlePageChange(currentPage + 1)"
+        *ngIf="currentPage < totalPages"
+      >
+        Next &raquo;
+      </li>
+    </ul>
+  </div>
+</div>

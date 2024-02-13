@@ -10,6 +10,7 @@ import {
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
+  // sesssionStorage: string = '';
   constructor(private router: Router) {}
 
   canActivate(

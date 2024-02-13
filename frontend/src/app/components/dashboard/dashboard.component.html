@@ -33,6 +33,12 @@
         <div class="sidebar-item" (click)="handleRoutes('housekeepers')">
           <i class="bi bi-person-circle"></i> Housekeepers
         </div>
+        <div
+          class="sidebar-item"
+          (click)="handleRoutes('housekeepersregistration')"
+        >
+          <i class="bi bi-plus-circle"></i>Add Staff
+        </div>
         <div class="sidebar-item" (click)="handleRoutes('students')">
           <i class="bi bi-person-bounding-box"></i> Students
         </div>
@@ -47,7 +53,10 @@
 
     <!-- Main Content -->
     <div class="mainContent">
-      <div *ngIf="route === 'dashboard'" class="maindashboard">
+      <div
+        *ngIf="route === 'dashboard'"
+        class="maindashboard d-flex justify-content-center"
+      >
         <div>
           <!-- PLACE YOUR DASHBOARD CODE HERE  -->
           <div class="container2">
@@ -140,6 +149,9 @@
       ></app-student-feedback>
       <app-requests *ngIf="route === 'adminrequest'"></app-requests>
       <app-housekeepers *ngIf="route === 'housekeepers'"></app-housekeepers>
+      <app-houskeeper-registration
+        *ngIf="route === 'housekeepersregistration'"
+      ></app-houskeeper-registration>
       <app-students *ngIf="route === 'students'"></app-students>
       <app-feedbacks *ngIf="route === 'adminfeedback'"></app-feedbacks>
       <!-- Add other components based on routes -->

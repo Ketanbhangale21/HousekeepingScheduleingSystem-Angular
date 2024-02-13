@@ -1,1 +1,57 @@
-<p>students works!</p>
+<div class="maincontainer">
+  <div class="outercontainer">
+    <h5>Students List</h5>
+    <table class="students-table">
+      <thead>
+        <tr>
+          <th>Sid</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>FloorNo</th>
+          <th>RoomNo</th>
+          <th>Recent Req..</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let student of currentRecords; trackBy: trackByStudent">
+          <td>{{ student.stdid }}</td>
+          <td>{{ student.fname }} {{ student.lname }}</td>
+          <td>{{ student.email }}</td>
+          <td>{{ student.floorno }}</td>
+          <td>{{ student.roomno }}</td>
+          <td>
+            {{
+              student.reqid && student.reqid.length > 0
+                ? student.reqid[student.reqid.length - 1]
+                : ""
+            }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <ul *ngIf="students.length > recordsPerPage">
+        <!-- Previous Button -->
+        <li *ngIf="currentPage > 1" (click)="handlePageChange(currentPage - 1)">
+          &laquo; Prev
+        </li>
+        <!-- Page Numbers -->
+        <li
+          *ngFor="let page of getPageNumbers()"
+          (click)="handlePageChange(page)"
+          [class.active]="currentPage === page"
+        >
+          {{ page }}
+        </li>
+
+        <!-- Next Button -->
+        <li
+          *ngIf="currentPage !== totalPages"
+          (click)="handlePageChange(currentPage + 1)"
+        >
+          Next &raquo;
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -1,1 +1,70 @@
-<p>student-requests works!</p>
+<div class="card-container">
+  <form>
+    <div class="card">
+      <label class="title">
+        <h4 class="design">Date:</h4>
+        <div class="d-flex justify-content-center">
+          <ngb-datepicker
+            #dp
+            name="date"
+            [(ngModel)]="requestDetails.date"
+            (ngModelChange)="handleDateChange($event)"
+            [ngModelOptions]="{ standalone: true }"
+          ></ngb-datepicker>
+        </div>
+      </label>
+    </div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <div class="card">
+      <label class="title">
+        <h4 class="design">Time:</h4>
+        <div class="time-slots">
+          <div
+            *ngFor="let slot of timeSlots"
+            class="cell py-1"
+            [class.selected]="requestDetails.selectedTime === slot"
+            (click)="handleTimeClick(slot)"
+          >
+            <span>&nbsp;</span>
+            {{ slot }}
+          </div>
+        </div>
+      </label>
+    </div>
+    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    <div class="card">
+      <h4 class="design">Request:</h4>
+      <hr />
+      <div class="request">
+        <label class="title">
+          <input
+            type="checkbox"
+            name="selectAll"
+            [checked]="
+              requestDetails.requestTypes.length === requestOptions.length
+            "
+            (change)="handleChange($event, 'selectAll', '')"
+          />
+          <span>&nbsp;&nbsp;</span>
+          Select All
+        </label>
+        <label *ngFor="let option of requestOptions; trackBy: trackByFn">
+          <input
+            type="checkbox"
+            name="requestType"
+            [value]="option"
+            [checked]="requestDetails.requestTypes.includes(option)"
+            (change)="handleChange($event, 'requestType', option)"
+          />
+          <span>&nbsp;&nbsp;</span>
+          {{ option }}
+        </label>
+      </div>
+    </div>
+    <br />
+    <button type="button" class="btn create" (click)="handleFeedback()">
+      Create
+    </button>
+    <div class="errorMessage" *ngIf="errors">{{ errors }}</div>
+  </form>
+</div>

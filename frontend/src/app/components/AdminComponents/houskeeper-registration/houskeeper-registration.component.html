@@ -1,0 +1,116 @@
+<div class="container">
+  <div class="img">
+    <img src="/assets/Images/cleaning.avif" alt="nota" />
+  </div>
+  <div class="form-container">
+    <form class="form">
+      <h2>Housekeeper Registration</h2>
+      <div class="input-name">
+        <i class="bi bi-person-fill"></i>
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="firstName"
+          placeholder="First Name"
+          class="name"
+        />
+        <span>&nbsp;&nbsp;</span>
+        <i class="bi bi-person-fill"></i>
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="lastName"
+          placeholder="Last Name"
+          class="name"
+        />
+      </div>
+
+      <div class="input-name">
+        <i class="bi bi-envelope-fill"></i>
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="email"
+          placeholder="Email"
+          class="text-name"
+        />
+      </div>
+
+      <div class="input-name">
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="country"
+          placeholder="Country"
+          class="t-name"
+        />
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="state"
+          placeholder="State"
+          class="t-name"
+        />
+      </div>
+
+      <div class="input-name">
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="city"
+          placeholder="City"
+          class="t-name"
+        />
+        <span>&nbsp;&nbsp;&nbsp;</span>
+        <input
+          name="name"
+          (ngModelChange)="clearError()"
+          type="text"
+          [(ngModel)]="phoneNumber"
+          placeholder="Phone Number"
+          class="t-name"
+        />
+      </div>
+
+      <div class="input-name">
+        <br />
+        <label class="radio">
+          <input
+            name="name"
+            (ngModelChange)="clearError()"
+            type="radio"
+            name="gender"
+            value="female"
+            [(ngModel)]="gender"
+          />
+          Female
+          <span></span>
+        </label>
+        <label class="radio">
+          <input
+            name="name"
+            (ngModelChange)="clearError()"
+            type="radio"
+            name="gender"
+            value="male"
+            [(ngModel)]="gender"
+          />
+          Male
+          <span></span>
+        </label>
+      </div>
+
+      <button type="button" (click)="handleRegistration()" class="btn">
+        Register
+      </button>
+    </form>
+    <div *ngIf="errors" class="errorMessage">{{ errors }}</div>
+  </div>
+</div>

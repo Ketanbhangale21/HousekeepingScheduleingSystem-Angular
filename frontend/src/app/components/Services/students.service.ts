@@ -21,6 +21,10 @@ export class StudentsService {
   }
 
   // Add a new student
+  loginUser(studentData: any): Observable<any> {
+    return this.http.post<any>('http://localhost:3005/api/login', studentData);
+  }
+  // Add a new student
   addStudent(studentData: any): Observable<any> {
     return this.http.post<any>(
       'http://localhost:3005/api/students',

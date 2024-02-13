@@ -1,1 +1,271 @@
-<p>housekeepers works!</p>
+<div class="maincontainer">
+  <ng-container *ngIf="!details">
+    <div class="outercontainer">
+      <h5>Housekeepers List</h5>
+      <table class="housekeepers-table">
+        <thead>
+          <tr>
+            <th>Hid</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Current Status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let housekeeper of currentRecords; trackBy: trackByFn">
+            <td>{{ housekeeper.hid }}</td>
+            <td>{{ housekeeper.fname }} {{ housekeeper.lname }}</td>
+            <td>{{ housekeeper.email }}</td>
+            <td>{{ housekeeper.status }}</td>
+            <td>
+              <i
+                class="bi bi-plus-square"
+                style="border-right: 1px solid #333; padding-right: 15px"
+                (click)="handleView(housekeeper)"
+              ></i>
+              <span> </span>
+              <i
+                class="bi bi-trash3 bin"
+                style="color: rgb(255, 0, 0)"
+                (click)="handleDelete(housekeeper.hid)"
+              ></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="pagination">
+        <ul *ngIf="housekeepers.length > recordsPerPage">
+          <li
+            *ngIf="currentPage > 1"
+            (click)="handlePageChange(currentPage - 1)"
+          >
+            &laquo; Prev
+          </li>
+          <li
+            *ngFor="let page of getPageNumbers(); let i = index"
+            (click)="handlePageChange(i + 1)"
+            [class.active]="currentPage === i + 1"
+          >
+            {{ i + 1 }}
+          </li>
+          <li
+            *ngIf="currentPage !== totalPages"
+            (click)="handlePageChange(currentPage + 1)"
+          >
+            Next &raquo;
+          </li>
+        </ul>
+      </div>
+    </div>
+  </ng-container>
+
+  <ng-container *ngIf="details">
+    <div class="innercontainer">
+      <div class="profile-card">
+        <div class="profile-header">
+          <img
+            [src]="
+              selectedHousekeeper.gender === 'Female'
+                ? '/assets/Images/profile1.png'
+                : '/assets/Images/profile2.png'
+            "
+            alt="Housekeeper Avatar"
+            class="avatar"
+          />
+        </div>
+        <div class="profile-details">
+          <div class="detail">
+            <span class="label">HiD:</span>
+            <span class="value">
+              {{ selectedHousekeeper.hid }}
+            </span>
+          </div>
+          <div class="detail">
+            <span class="label">First Name:</span>
+            <span class="value">
+              {{ selectedHousekeeper.fname }}
+            </span>
+          </div>
+          <div class="detail">
+            <span class="label">Last Name:</span>
+            <span class="value">
+              {{ selectedHousekeeper.lname }}
+            </span>
+          </div>
+          <div class="detail">
+            <span class="label">Email:</span>
+            <span class="value">{{ selectedHousekeeper.email }}</span>
+          </div>
+          <div class="detail">
+            <span class="label">Country:</span>
+            <span class="value">{{ selectedHousekeeper.country }}</span>
+          </div>
+          <div class="detail">
+            <span class="label">State:</span>
+            <span class="value">{{ selectedHousekeeper.state }}</span>
+          </div>
+          <div class="detail">
+            <span class="label">City:</span>
+            <span class="value">{{ selectedHousekeeper.city }}</span>
+          </div>
+          <div class="detail">
+            <span class="label">Phone:</span>
+            <span class="value">{{ selectedHousekeeper.phone }}</span>
+          </div>
+          <div class="detail">
+            <span class="label">Gender:</span>
+            <span class="value">{{ selectedHousekeeper.gender }}</span>
+          </div>
+          <i
+            class="bi bi-pencil-square"
+            style="cursor: pointer"
+            (click)="editSelected()"
+          >
+            Edit
+          </i>
+        </div>
+
+        <!-- Display editable fields if in edit mode -->
+        <div *ngIf="editable" class="editHouskeeper">
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  <span class="label">HiD:</span>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="hid"
+                    disabled=""
+                    [(ngModel)]="selectedHousekeeper.hid"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">First Name:</span>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="fname"
+                    [(ngModel)]="selectedHousekeeper.fname"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Last Name:</span>
+                </td>
+                <td>
+                  <input
+                    type="text"
+                    id="lname"
+                    [(ngModel)]="selectedHousekeeper.lname"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Email:</span>
+                </td>
+                <td colSpan="2">
+                  <input
+                    type="text"
+                    id="email"
+                    [(ngModel)]="selectedHousekeeper.email"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Country:</span>
+                </td>
+                <td colSpan="2">
+                  <input
+                    type="text"
+                    id="country"
+                    [(ngModel)]="selectedHousekeeper.country"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">State:</span>
+                </td>
+                <td colSpan="2">
+                  <input
+                    type="text"
+                    id="state"
+                    [(ngModel)]="selectedHousekeeper.state"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">City:</span>
+                </td>
+                <td colSpan="2">
+                  <input
+                    type="text"
+                    id="city"
+                    [(ngModel)]="selectedHousekeeper.city"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Phone:</span>
+                </td>
+                <td colSpan="2">
+                  <input
+                    type="text"
+                    id="phone"
+                    [(ngModel)]="selectedHousekeeper.phone"
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span class="label">Gender:</span>
+                </td>
+                <td colSpan="2">
+                  <input
+                    type="text"
+                    id="gender"
+                    defaultValue="{{ selectedHousekeeper.gender }}"
+                  />
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="d-flex m-3" style="justify-content: space-around">
+        <button
+          (click)="handleBack()"
+          class="btn btn-primary"
+          *ngIf="!editable"
+        >
+          Back
+        </button>
+        <button
+          (click)="handleCancel()"
+          *ngIf="editable"
+          class="btn btn-danger"
+        >
+          Cancel
+        </button>
+        <button
+          (click)="handleUpdate()"
+          *ngIf="editable"
+          class="btn btn-success"
+        >
+          Update
+        </button>
+      </div>
+    </div>
+  </ng-container>
+</div>

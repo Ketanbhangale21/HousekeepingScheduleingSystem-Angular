@@ -1,1 +1,70 @@
-<p>student-feedback works!</p>
+<div class="container3">
+  <form (ngSubmit)="handleSubmit($event)" class="feedback-form">
+    <div class="form-group">
+      <label for="requestId" class="form-label">Request ID:</label>
+      <select
+        id="requestId"
+        [(ngModel)]="selectedReqId"
+        name="requestId"
+        class="form-control"
+      >
+        <option value="">Select Request ID</option>
+        <option *ngFor="let id of requestIds" [value]="id" style="color: black">
+          {{ id }}
+        </option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="housekeeperName" class="form-label">Housekeeper Name:</label>
+      <input
+        type="text"
+        id="housekeeperName"
+        [(ngModel)]="housekeeperName"
+        name="housekeeperName"
+        readonly
+        class="form-control"
+      />
+    </div>
+    <div class="form-group">
+      <label for="housekeeperId" class="form-label">Housekeeper ID:</label>
+      <input
+        type="text"
+        id="housekeeperId"
+        [(ngModel)]="housekeeperID"
+        name="housekeeperId"
+        readonly
+        class="form-control"
+      />
+    </div>
+    <div class="rating-inputs">
+      <label *ngFor="let value of [1, 2, 3, 4, 5]" class="radio-label">
+        <input
+          type="radio"
+          name="rating"
+          [value]="value"
+          [(ngModel)]="rating"
+          (ngModelChange)="onChange()"
+        />
+        {{ value }}
+      </label>
+    </div>
+    <div class="form-group">
+      <label for="feedback" class="form-label">Feedback:</label>
+      <textarea
+        id="feedback"
+        [(ngModel)]="feedback"
+        name="feedback"
+        class="form-control"
+        (ngModelChange)="onChange()"
+      ></textarea>
+    </div>
+    <div class="d-flex justify-content-center">
+      <button type="submit" class="btn btn-primary align-center">
+        Submit Feedback
+      </button>
+    </div>
+    <div class="error-message text-danger text-center" *ngIf="errorsField">
+      {{ errorsField }}
+    </div>
+  </form>
+</div>

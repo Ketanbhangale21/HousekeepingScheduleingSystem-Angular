@@ -1,0 +1,49 @@
+.container3 {
+  margin: auto;
+  display: flex;
+  justify-content: center !important;
+}
+
+.feedback-form {
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 500px;
+  border-radius: 5px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  font-weight: bold;
+}
+
+.form-control {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+textarea.form-control {
+  height: 100px;
+}
+
+.btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #0056b3;
+}
+/* Existing styles */
+
+.radio-label {
+  margin-right: 10px;
+}

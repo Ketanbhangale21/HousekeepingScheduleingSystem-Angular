@@ -27,13 +27,11 @@ export class LoginComponent {
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
-
   handleLogin(): void {
     if (!this.email || !this.password) {
       this.errorField = 'Email or password cannot be empty';
       return;
     }
-
     if (!this.validateEmail(this.email)) {
       this.errorField = 'Invalid email-id';
       return;
@@ -46,7 +44,7 @@ export class LoginComponent {
       return;
     }
     if (user.password === this.password) {
-      this.authService.login(this.email, user.fname);
+      this.authService.login(this.email, user.fname, user.stdid);
     } else {
       this.errorField = 'Incorrect Password, please try again.';
     }

@@ -1,1 +1,50 @@
-<p>feedbacks works!</p>
+<div class="maincontainer">
+  <div class="outercontainer">
+    <h5>Feedbacks Received</h5>
+    <table class="inner-container1">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Housekeeper Id</th>
+          <th>Housekeeper Name</th>
+          <th>Rating</th>
+          <th>Feedback</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let feedback of currentRecords">
+          <td>{{ feedback.reqid }}</td>
+          <td>{{ feedback.hid }}</td>
+          <td>{{ feedback.hname }}</td>
+          <td>{{ feedback.rating }} Stars</td>
+          <td>{{ feedback.feedback }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="pagination">
+      <ul *ngIf="feedbacks.length > recordsPerPage">
+        <!-- Previous Button -->
+        <li *ngIf="currentPage > 1" (click)="handlePageChange(currentPage - 1)">
+          &laquo; Prev
+        </li>
+        <!-- Page Numbers -->
+        <li
+          *ngFor="let page of getPageNumbers()"
+          (click)="handlePageChange(page)"
+          [class.active]="currentPage === page"
+        >
+          {{ page }}
+        </li>
+
+        <!-- Next Button -->
+        <li
+          *ngIf="currentPage !== totalPages"
+          (click)="handlePageChange(currentPage + 1)"
+        >
+          Next &raquo;
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
