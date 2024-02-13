@@ -120,8 +120,8 @@ router.put(
           .status(404)
           .send("The student you are trying to update does not exist.");
       } else {
-        student.fname = req.body.name;
-        student.lname = req.body.name;
+        student.fname = req.body.fname;
+        student.lname = req.body.fname;
         student.email = req.body.email;
         student.country = req.body.country;
         student.state = req.body.state;
