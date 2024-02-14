@@ -49,7 +49,7 @@ router.post(
     }
     try {
       const newStaff = new StaffModel(req.body);
-      console.log(newStaff);
+      // console.log(newStaff);
       const createdStaff = await newStaff.save();
       res.status(201).json({
         message: "Staff created successfully",

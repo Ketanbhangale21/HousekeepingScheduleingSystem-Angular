@@ -49,17 +49,17 @@ export class StudentProfileComponent {
       gender: (document.getElementById('gender') as HTMLInputElement).value,
     };
     console.log(updatedStudent);
-    // this.http
-    //   .put('http://localhost:3005/api/students', updatedStudent)
-    //   .subscribe(
-    //     () => {
-    //       alert('Updated');
-    //       this.studentDetails = updatedStudent;
-    //     },
-    //     (error) => {
-    //       console.error('Error updating student:', error);
-    //     }
-    //   );
+    this.http
+      .put('http://localhost:3005/api/students', updatedStudent)
+      .subscribe(
+        () => {
+          alert('Updated');
+          this.studentDetails = updatedStudent;
+        },
+        (error) => {
+          console.error('Error updating student:', error);
+        }
+      );
   }
 
   handleBack(): void {

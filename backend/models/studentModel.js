@@ -18,7 +18,6 @@ var studentSchema = new Schema(
     gender: String,
     secquestion: String,
     secanswer: String,
-    hostel: String,
     roomno: Number,
     floorno: Number,
     reqid: Array,

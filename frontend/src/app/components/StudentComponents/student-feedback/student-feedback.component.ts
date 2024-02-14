@@ -66,11 +66,10 @@ export class StudentFeedbackComponent {
             this.housekeeperID = dataItem.hid;
             // console.log(this.housekeeperID);
           });
-        }
-        if (!fildata) {
+        } else {
           this.housekeeperName = '';
           this.housekeeperID = '';
-          console.log(fildata);
+          // console.log(fildata);
         }
       } else {
         this.housekeeperName = '';

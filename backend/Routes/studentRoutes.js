@@ -19,12 +19,9 @@ router.get("/students", async function (req, res) {
 
 router.get(
   "/students/:id",
-  [param("id").isNumeric().withMessage("Invalid student ID")],
+
   async function (req, res) {
     const errors = validationResult(req);
-    if (!errors.isEmpty()) {
-      return res.status(400).json({ errors: errors.array() });
-    }
     var id = req.params.id;
     try {
       const data = await StudentModel.findOne({ stdid: id }, { _id: 0 }).lean();
@@ -118,12 +115,13 @@ router.put(
           .send("The student you are trying to update does not exist.");
       } else {
         student.fname = req.body.fname;
-        student.lname = req.body.fname;
+        student.lname = req.body.lname;
         student.email = req.body.email;
         student.country = req.body.country;
         student.state = req.body.state;
         student.city = req.body.city;
         student.phone = req.body.phone;
+        student.gender = req.body.gender;
         const updatedStudent = await student.save();
         res.status(200).json({
           message: "Student updated successfully",

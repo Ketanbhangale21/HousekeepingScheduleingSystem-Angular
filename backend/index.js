@@ -9,8 +9,6 @@ const feedbackRoutes = require("./Routes/feedbackRoutes");
 
 // Creating an instance of express application
 var app = express();
-
-app.set("view engine", "ejs");
 app.use(cors());
 // Using body-parser middleware to parse incoming request bodies
 app.use(bodyParser.urlencoded({ extended: false }));
