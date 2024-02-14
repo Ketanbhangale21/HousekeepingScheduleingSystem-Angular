@@ -15,12 +15,7 @@ export class LoginComponent {
   errorField: string = '';
   userData: any[] = [];
   showPassword: boolean = false;
-  constructor(
-    private studentService: StudentsService,
-    private authService: AuthService,
-    private http: HttpClient
-  ) {}
-  ngOnInit() {}
+  constructor(private authService: AuthService, private http: HttpClient) {}
   togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
   }
@@ -34,11 +29,11 @@ export class LoginComponent {
       return;
     }
     const loginData = { email: this.email, password: this.password };
-    console.log(loginData);
+    // console.log(loginData);
     this.http.post<any>('http://localhost:3005/api/login', loginData).subscribe(
       (response) => {
         if (response && response.message === 'Login successful') {
-          console.log('Login successful');
+          // console.log('Login successful');
           this.errorField = response.message;
           this.authService.login(this.email);
         } else {

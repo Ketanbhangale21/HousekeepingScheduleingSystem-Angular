@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { format } from 'path';
 import { RequestService } from '../../Services/requests.service';
 
 @Component({
@@ -23,8 +22,8 @@ export class StudentRequestsComponent {
     'Dusting',
     'Cleaning',
     'Sweeping',
-    'Washroom Cleaning',
     'Bed Cleaning',
+    'Washroom Cleaning',
   ];
 
   constructor(
@@ -36,7 +35,7 @@ export class StudentRequestsComponent {
     this.studentEmail = sessionStorage.getItem('UserEmail');
     this.stdid = sessionStorage.getItem('UserId');
     this.generateTimeCells();
-    console.log(this.stdid);
+    // console.log(this.stdid);
   }
 
   async generateUniqueID(): Promise<string> {
@@ -45,6 +44,7 @@ export class StudentRequestsComponent {
 
   handleDateChange(date: Date): void {
     // console.log(date);
+    this.errors = '';
     const options: Intl.DateTimeFormatOptions = {
       weekday: 'long',
       month: 'long',
@@ -78,10 +78,12 @@ export class StudentRequestsComponent {
   }
 
   handleTimeClick(selectedTime: string): void {
+    this.errors = '';
     this.requestDetails.selectedTime = selectedTime;
   }
 
   handleChange(event: any, name: string, value: string): void {
+    this.errors = '';
     if (name === 'requestType') {
       if (event.target.checked) {
         this.requestDetails.requestTypes.push(value);

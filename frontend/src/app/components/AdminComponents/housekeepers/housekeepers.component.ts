@@ -61,8 +61,7 @@ export class HousekeepersComponent {
 
   handlePageChange(pageNumber: number) {
     this.currentPage = pageNumber;
-    // this.updateCurrentRecords();
-    console.log(pageNumber);
+    // console.log(pageNumber);
   }
   getPageNumbers(): number[] {
     return Array.from({ length: this.totalPages }, (_, index) => index + 1);

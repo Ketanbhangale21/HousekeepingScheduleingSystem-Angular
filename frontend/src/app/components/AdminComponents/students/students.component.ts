@@ -25,7 +25,7 @@ export class StudentsComponent implements OnInit {
   fetchStudents(): void {
     this.http.get<any[]>('http://localhost:3005/api/students').subscribe(
       (response) => {
-        const sortedStudents = response.sort((a, b) => a.sid - b.sid);
+        const sortedStudents = response.sort((a, b) => a.stdid - b.stdid);
         this.students = sortedStudents;
       },
       (error) => {

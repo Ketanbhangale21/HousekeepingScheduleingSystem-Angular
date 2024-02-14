@@ -25,9 +25,7 @@ export class StudentFeedbackComponent {
     }
   }
   handleOptionchange() {
-    if (this.selectedReqId) {
-      this.fetchHousekeeperDetails();
-    }
+    this.fetchHousekeeperDetails();
   }
 
   async fetchRequestIds(): Promise<void> {
@@ -52,7 +50,7 @@ export class StudentFeedbackComponent {
   }
   async fetchHousekeeperDetails(): Promise<void> {
     try {
-      console.log(this.selectedReqId);
+      // console.log(this.selectedReqId);
       if (this.selectedReqId) {
         const response: any = await this.http
           .get('http://localhost:3005/api/staff')
@@ -62,12 +60,17 @@ export class StudentFeedbackComponent {
             user.reqid &&
             user.reqid.some((id: any) => id === this.selectedReqId)
         );
-        if (fildata.length > 0) {
+        if (fildata) {
           fildata.forEach((dataItem: any) => {
             this.housekeeperName = `${dataItem.fname} ${dataItem.lname}`;
             this.housekeeperID = dataItem.hid;
-            console.log(this.housekeeperID);
+            // console.log(this.housekeeperID);
           });
+        }
+        if (!fildata) {
+          this.housekeeperName = '';
+          this.housekeeperID = '';
+          console.log(fildata);
         }
       } else {
         this.housekeeperName = '';
@@ -95,7 +98,7 @@ export class StudentFeedbackComponent {
       feedback: this.feedback,
       stdid: this.stdid,
     };
-    console.log(feedbackData);
+    // console.log(feedbackData);
     this.http
       .post('http://localhost:3005/api/feedbacks', feedbackData)
       .subscribe(

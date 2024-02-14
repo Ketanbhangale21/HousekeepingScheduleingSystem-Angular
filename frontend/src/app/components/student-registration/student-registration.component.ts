@@ -28,6 +28,8 @@ export class StudentRegistrationComponent {
   city: string = '';
   phoneNumber: string = '';
   gender: string = '';
+  roomno: number = 0;
+  floorno: number = 0;
   password: string = '';
   repassword: string = '';
   secquestion: string = '';
@@ -35,8 +37,7 @@ export class StudentRegistrationComponent {
   showPassword: boolean = false;
   showRePassword: boolean = false;
   errorsFields: any;
-  roomno: number = 0;
-  floorno: number = 0;
+
   async intializeNewStudent(): Promise<void> {
     this.newStudent = {
       stdid: await this.generateStdId(),
@@ -137,7 +138,7 @@ export class StudentRegistrationComponent {
     userData: any[]
   ) {
     const user = userData.find((user) => user.email === email.toLowerCase());
-    console.log(user);
+    // console.log(user);
     const isValidPassword = this.isPasswordValid(password);
     if (!firstName || !lastName) {
       return 'Firstname and Lastname are required.';
@@ -182,7 +183,7 @@ export class StudentRegistrationComponent {
       this.gender,
       this.userData
     );
-    console.log(this.errorsFields);
+    // console.log(this.errorsFields);
     await this.intializeNewStudent();
     if (this.errorsFields === true) {
       console.log(this.newStudent);

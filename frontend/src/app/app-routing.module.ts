@@ -31,43 +31,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'studentrequest',
-    component: StudentRequestsComponent,
-  },
-  {
-    path: 'studentstatus',
-    component: RequestStatusComponent,
-  },
-  {
-    path: 'profile',
-    component: StudentProfileComponent,
-  },
-  {
-    path: 'studentfeedback',
-    component: StudentFeedbackComponent,
-  },
-  {
-    path: 'adminrequest',
-    component: RequestsComponent,
-  },
-  {
-    path: 'housekeepers',
-    component: HousekeepersComponent,
-  },
-  {
-    path: 'housekeepersregistration',
-    component: HouskeeperRegistrationComponent,
-  },
-  {
-    path: 'students',
-    component: StudentsComponent,
-  },
-  {
-    path: 'adminfeedback',
-    component: FeedbacksComponent,
-  },
-
-  {
     path: '**',
     component: LoginComponent,
   },

@@ -20,21 +20,8 @@ export class HouskeeperRegistrationComponent {
 
   constructor(private http: HttpClient) {}
 
-  ngOnInit(): void {
-    this.fetchData();
-  }
   clearError() {
     this.errors = '';
-  }
-  async fetchData(): Promise<void> {
-    try {
-      const response = await this.http
-        .get<any[]>('http://localhost:3005/api/students')
-        .toPromise();
-      this.housekeepers = response;
-    } catch (error) {
-      console.error('Error fetching data:', error);
-    }
   }
 
   async generateUniqueID(): Promise<string> {

@@ -16,9 +16,9 @@ export class DashboardComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.fetchStudentDetails();
     this.prop1 = sessionStorage.getItem('UserType') || '';
     this.userEmail = sessionStorage.getItem('UserEmail') || '';
+    this.fetchStudentDetails();
   }
   fetchStudentDetails(): void {
     this.http.get<any[]>('http://localhost:3005/api/students').subscribe(
@@ -37,8 +37,6 @@ export class DashboardComponent implements OnInit {
     );
   }
   handleRoutes(route: string): void {
-    if (route === 'housekeepers') {
-    }
     this.route = route;
   }
 

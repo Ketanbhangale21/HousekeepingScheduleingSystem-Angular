@@ -9,7 +9,6 @@ export class FeedbacksComponent {
   feedbacks: any[] = [];
   currentPage: number = 1;
   recordsPerPage: number = 5;
-  // totalPages: number = 5;
 
   constructor(private http: HttpClient) {}
 
