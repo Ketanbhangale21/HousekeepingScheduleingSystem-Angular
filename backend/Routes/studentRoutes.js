@@ -41,7 +41,7 @@ router.get(
 router.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-    console.log(email, password);
+    // console.log(email, password);
     const user = await StudentModel.findOne({ email });
 
     if (!user) {
