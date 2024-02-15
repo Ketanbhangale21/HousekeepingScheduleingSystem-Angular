@@ -104,7 +104,6 @@ export class StudentRequestsComponent {
   trackByFn(index: number, option: string): string {
     return option; // or return unique identifier if available
   }
-
   async handleFeedback(): Promise<void> {
     try {
       if (

@@ -11,6 +11,16 @@ router.get("/students", async function (req, res) {
     )
       .sort({ stdid: 1 })
       .lean();
+    // console.table(result);
+
+    res.send(result);
+  } catch (error) {
+    res.status(500).send(error);
+  }
+});
+router.get("/students/all", async function (req, res) {
+  try {
+    let result = await StudentModel.find({ _id: 0 }).sort({ stdid: 1 }).lean();
     res.send(result);
   } catch (error) {
     res.status(500).send(error);
@@ -42,12 +52,13 @@ router.post("/login", async (req, res) => {
     const user = await StudentModel.findOne({ email });
 
     if (!user) {
-      return res.status(401).json({ error: "Unregistered Email-Id" });
+      return res.status(401).json({ message: "Unregistered Email-Id" });
     }
-    if (user.password === password) {
+    if (user && user.password === password) {
       return res.status(200).json({ message: "Login successful" });
     } else {
-      return res.status(401).json({ error: "Incorrect password" });
+      // console.log("Incpass");
+      return res.status(400).json({ message: "Incorrect password" });
     }
   } catch (error) {
     console.error("Error during login:", error);

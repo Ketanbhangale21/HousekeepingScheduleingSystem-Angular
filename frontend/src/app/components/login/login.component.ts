@@ -32,16 +32,19 @@ export class LoginComponent {
     // console.log(loginData);
     this.http.post<any>('http://localhost:3005/api/login', loginData).subscribe(
       (response) => {
-        if (response && response.message === 'Login successful') {
+        if (response.message === 'Login successful') {
           // console.log('Login successful');
-          this.errorField = response.message;
+          console.log(response.message);
+          // this.errorField = response.message;
           this.authService.login(this.email);
         } else {
-          this.errorField = response.error;
+          console.log('failed');
           console.error('Login failed:', response.error);
         }
       },
       (error) => {
+        this.errorField = error.error.message;
+
         console.error('Error during login:', error);
       }
     );

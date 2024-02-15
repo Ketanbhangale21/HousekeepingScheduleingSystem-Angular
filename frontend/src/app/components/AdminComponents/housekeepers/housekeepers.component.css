@@ -37,6 +37,7 @@
   background-color: #229c80;
   font-weight: bold;
   text-align: center;
+  color: #f5f5f5;
 }
 
 .housekeepers-table tbody tr:nth-child(even) {

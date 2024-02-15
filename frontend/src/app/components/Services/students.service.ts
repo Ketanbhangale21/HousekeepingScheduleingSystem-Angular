@@ -12,7 +12,7 @@ export class StudentsService {
 
   // Get all students
   getStudents(): Observable<any> {
-    return this.http.get<any>('http://localhost:3005/api/students');
+    return this.http.get<any>('http://localhost:3005/api/students/all');
   }
 
   // Get student by ID

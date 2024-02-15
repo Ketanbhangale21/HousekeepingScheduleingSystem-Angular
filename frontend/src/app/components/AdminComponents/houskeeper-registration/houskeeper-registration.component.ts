@@ -75,7 +75,7 @@ export class HouskeeperRegistrationComponent {
       await this.http
         .post<any>('http://localhost:3005/api/staff', dataObj)
         .toPromise();
-      console.log(dataObj);
+      // console.log(dataObj);
       alert('Record Added');
 
       // Reset form fields after successful registration
