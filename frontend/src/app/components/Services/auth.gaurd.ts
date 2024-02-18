@@ -10,7 +10,6 @@ import {
   providedIn: 'root',
 })
 export class AuthGuard implements CanActivate {
-  // sesssionStorage: string = '';
   constructor(private router: Router) {}
 
   canActivate(
@@ -18,7 +17,7 @@ export class AuthGuard implements CanActivate {
     state: RouterStateSnapshot
   ): boolean {
     const userToken = sessionStorage.getItem('user-token');
-
+    // console.log(userToken);
     if (!userToken || userToken === 'undefined') {
       this.router.navigate(['/login'], {
         queryParams: { returnUrl: state.url },

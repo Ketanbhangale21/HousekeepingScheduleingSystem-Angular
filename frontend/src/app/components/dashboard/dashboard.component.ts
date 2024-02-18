@@ -37,11 +37,17 @@ export class DashboardComponent implements OnInit {
     );
   }
   handleRoutes(route: string): void {
-    this.route = route;
+    this.route = '';
+    setTimeout(() => {
+      this.route = route;
+    }, 0);
   }
 
   login(): void {
-    sessionStorage.clear();
-    window.location.href = '/'; // Redirect to login page
+    const confirmed = window.confirm('Do you want to logout ?');
+    if (confirmed) {
+      sessionStorage.clear();
+      window.location.href = '/';
+    }
   }
 }

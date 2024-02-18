@@ -7,45 +7,86 @@
   <div class="mainContainer">
     <!-- Sidebar -->
     <div class="sidebar">
-      <div class="sidebar-item" (click)="handleRoutes('dashboard')">
+      <div
+        class="sidebar-item"
+        [ngClass]="{ active: route === 'dashboard' }"
+        (click)="handleRoutes('dashboard')"
+      >
         <i class="bi bi-tv"></i> Dashboard
       </div>
       <!-- Add sidebar items based on user type -->
       <div *ngIf="prop1 === 'Student'">
-        <div class="sidebar-item" (click)="handleRoutes('studentrequest')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'studentrequest' }"
+          (click)="handleRoutes('studentrequest')"
+        >
           <i class="bi bi-telegram"></i> My Requests
         </div>
-        <div class="sidebar-item" (click)="handleRoutes('studentstatus')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'studentstatus' }"
+          (click)="handleRoutes('studentstatus')"
+        >
           <i class="bi bi-joystick"></i> Status
         </div>
-        <div class="sidebar-item" (click)="handleRoutes('profile')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'profile' }"
+          (click)="handleRoutes('profile')"
+        >
           <i class="bi bi-person-circle"></i> Profile
         </div>
-        <div class="sidebar-item" (click)="handleRoutes('studentfeedback')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'studentfeedback' }"
+          (click)="handleRoutes('studentfeedback')"
+        >
           <i class="bi bi-card-checklist"></i> Feedback
         </div>
       </div>
       <div *ngIf="prop1 === 'Admin'">
-        <div class="sidebar-item" (click)="handleRoutes('adminrequest')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'adminrequest' }"
+          (click)="handleRoutes('adminrequest')"
+        >
           <i class="bi bi-telegram"></i> Requests
         </div>
-        <div class="sidebar-item" (click)="handleRoutes('housekeepers')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'housekeepers' }"
+          (click)="handleRoutes('housekeepers')"
+        >
           <i class="bi bi-person-circle"></i> Housekeepers
         </div>
         <div
           class="sidebar-item"
+          [ngClass]="{ active: route === 'housekeepersregistration' }"
           (click)="handleRoutes('housekeepersregistration')"
         >
           <i class="bi bi-plus-circle"></i>Add Staff
         </div>
-        <div class="sidebar-item" (click)="handleRoutes('students')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'students' }"
+          (click)="handleRoutes('students')"
+        >
           <i class="bi bi-person-bounding-box"></i> Students
         </div>
-        <div class="sidebar-item" (click)="handleRoutes('adminfeedback')">
+        <div
+          class="sidebar-item"
+          [ngClass]="{ active: route === 'adminfeedback' }"
+          (click)="handleRoutes('adminfeedback')"
+        >
           <i class="bi bi-card-checklist"></i> Feedbacks
         </div>
       </div>
-      <div class="sidebar-item" (click)="login()">
+      <div
+        class="sidebar-item"
+        [ngClass]="{ active: route === '' }"
+        (click)="login()"
+      >
         <i class="bi bi-box-arrow-left"></i> Logout
       </div>
     </div>

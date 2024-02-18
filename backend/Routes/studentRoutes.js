@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { body, validationResult, param } = require("express-validator");
+const { body, validationResult } = require("express-validator");
 const StudentModel = require("../models/studentModel");
 router.use(express.json());
 router.get("/students", async function (req, res) {
@@ -11,8 +11,6 @@ router.get("/students", async function (req, res) {
     )
       .sort({ stdid: 1 })
       .lean();
-    // console.table(result);
-
     res.send(result);
   } catch (error) {
     res.status(500).send(error);

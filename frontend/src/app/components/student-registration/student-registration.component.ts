@@ -43,7 +43,7 @@ export class StudentRegistrationComponent {
       stdid: await this.generateStdId(),
       fname: this.firstName,
       lname: this.lastName,
-      email: this.email,
+      email: this.email.toLowerCase(),
       country: this.country,
       state: this.state,
       city: this.city,

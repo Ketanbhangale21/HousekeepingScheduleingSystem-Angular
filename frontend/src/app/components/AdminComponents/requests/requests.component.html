@@ -1,77 +1,79 @@
-<div>
-  <h5 class="text-center">Requests</h5>
-  <table class="housekeepers-table">
-    <thead>
-      <tr>
-        <th>Request ID</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Requests</th>
-        <th>Status</th>
-        <th>Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let request of currentRecords">
-        <td>{{ request.reqid }}</td>
-        <td>{{ request.date }}</td>
-        <td>{{ request.timings }}</td>
-        <td>
-          <ul style="list-style-type: none">
-            <li *ngFor="let req of request.reqs">{{ req }}</li>
-          </ul>
-        </td>
-        <td
-          [ngClass]="{
-            'text-primary': request.status === 'Allocated',
-            'text-success': request.status === 'Completed',
-            'text-default':
-              request.status !== 'Allocated' && request.status !== 'Completed'
-          }"
+<div class="d-flex justify-content-center">
+  <div class="outercontainer">
+    <!-- <h5 class="text-center">Requests</h5> -->
+    <table class="housekeepers-table">
+      <thead>
+        <tr>
+          <th>Request ID</th>
+          <th>Date</th>
+          <th>Time</th>
+          <th>Requests</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let request of currentRecords">
+          <td>{{ request.reqid }}</td>
+          <td>{{ request.date }}</td>
+          <td>{{ request.timings }}</td>
+          <td>
+            <ul style="list-style-type: none">
+              <li *ngFor="let req of request.reqs">{{ req }}</li>
+            </ul>
+          </td>
+          <td
+            [ngClass]="{
+              'text-primary': request.status === 'Allocated',
+              'text-success': request.status === 'Completed',
+              'text-default':
+                request.status !== 'Allocated' && request.status !== 'Completed'
+            }"
+          >
+            {{ request.status }}
+          </td>
+          <td>
+            <button
+              class="status1 btn btn-primary"
+              *ngIf="request.status === 'Created'"
+              (click)="allocateHousekeeperToRequest(request.reqid)"
+            >
+              Allocate
+            </button>
+            <button
+              class="status2 btn btn-success"
+              *ngIf="request.status === 'Allocated'"
+              (click)="completeRequest(request.reqid)"
+            >
+              Complete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="pagination">
+      <ul *ngIf="requests.length > recordsPerPage">
+        <!-- Previous Button -->
+        <li *ngIf="currentPage > 1" (click)="handlePageChange(currentPage - 1)">
+          &laquo; Prev
+        </li>
+        <!-- Page Numbers -->
+        <li
+          *ngFor="let page of getPageNumbers()"
+          (click)="handlePageChange(page)"
+          [class.active]="currentPage === page"
         >
-          {{ request.status }}
-        </td>
-        <td>
-          <button
-            class="status1 btn btn-primary"
-            *ngIf="request.status === 'Created'"
-            (click)="allocateHousekeeperToRequest(request.reqid)"
-          >
-            Allocate
-          </button>
-          <button
-            class="status2 btn btn-success"
-            *ngIf="request.status === 'Allocated'"
-            (click)="completeRequest(request.reqid)"
-          >
-            Complete
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <div class="pagination">
-    <ul *ngIf="requests.length > recordsPerPage">
-      <!-- Previous Button -->
-      <li *ngIf="currentPage > 1" (click)="handlePageChange(currentPage - 1)">
-        &laquo; Prev
-      </li>
-      <!-- Page Numbers -->
-      <li
-        *ngFor="let page of getPageNumbers()"
-        (click)="handlePageChange(page)"
-        [class.active]="currentPage === page"
-      >
-        {{ page }}
-      </li>
+          {{ page }}
+        </li>
 
-      <!-- Next Button -->
-      <li
-        *ngIf="currentPage !== totalPages"
-        (click)="handlePageChange(currentPage + 1)"
-      >
-        Next &raquo;
-      </li>
-    </ul>
+        <!-- Next Button -->
+        <li
+          *ngIf="currentPage !== totalPages"
+          (click)="handlePageChange(currentPage + 1)"
+        >
+          Next &raquo;
+        </li>
+      </ul>
+    </div>
   </div>
 </div>

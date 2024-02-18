@@ -62,7 +62,7 @@ export class HouskeeperRegistrationComponent {
         hid: newhid,
         fname: this.firstName,
         lname: this.lastName,
-        email: this.email,
+        email: this.email.toLowerCase(),
         country: this.country,
         state: this.state,
         phone: this.phoneNumber,

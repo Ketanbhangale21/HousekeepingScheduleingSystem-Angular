@@ -48,7 +48,8 @@
   margin-bottom: 20px;
   padding: 10px 20px;
   /* background-color: #fff; */
-  color: #333;
+  color: #19725d;
+  font-weight: bold;
   border-radius: 5px;
   cursor: pointer;
   font-size: 15px;
@@ -58,7 +59,7 @@
 }
 
 .sidebar-item:hover {
-  background-color: #e6e6e6;
+  background-color: #fef1c7;
 }
 .mainContainer {
   display: flex;
@@ -117,6 +118,10 @@
 .c4 {
   background-color: #c02626;
   font-weight: bold;
+}
+.active {
+  background-color: #fef1c7;
+  transition: 0.3s;
 }
 
 /* Add this to your Dashboard.css file */

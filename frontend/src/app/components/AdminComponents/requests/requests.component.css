@@ -3,6 +3,10 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+.outercontainer {
+  max-width: 1200px;
+  width: 100%;
+}
 .housekeepers-table {
   width: 100%;
   border-collapse: collapse;

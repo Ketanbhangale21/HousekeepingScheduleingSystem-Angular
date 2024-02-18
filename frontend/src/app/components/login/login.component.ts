@@ -28,7 +28,7 @@ export class LoginComponent {
       this.errorField = 'Invalid email-id';
       return;
     }
-    const loginData = { email: this.email, password: this.password };
+    const loginData = { email: this.email.toLowerCase(), password: this.password };
     // console.log(loginData);
     this.http.post<any>('http://localhost:3005/api/login', loginData).subscribe(
       (response) => {
